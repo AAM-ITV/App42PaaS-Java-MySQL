@@ -1,0 +1,7 @@
+startDelaySeconds: 0
+hostPort: 0.0.0.0:12345
+ssl: false
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+rules:
+  - pattern: ".*"
