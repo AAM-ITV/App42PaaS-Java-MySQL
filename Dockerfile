@@ -17,7 +17,7 @@ RUN mvn clean package
 RUN cp target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Копируем Config.properties в нужное место
-RUN cp Config.properties /usr/local/tomcat/webapps/ROOT/Config.properties
+RUN cp WebContent/Config.properties /usr/local/tomcat/webapps/ROOT/Config.properties
 
 # Добавляем конфигурационный файл для JMX Exporter
 COPY jmx_exporter_config.yml /usr/local/tomcat/webapps/jmx_exporter_config.yml
