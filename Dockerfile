@@ -16,5 +16,14 @@ RUN mvn clean package
 # Копируем WAR файл в директорию Tomcat
 RUN cp target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
-# Открываем порт 8080
-EXPOSE 8080
+# Добавляем конфигурационный файл для JMX Exporter
+COPY jmx_exporter_config.yml /usr/local/tomcat/webapps/jmx_exporter_config.yml
+
+# Загружаем JMX Exporter
+ADD https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar /usr/local/tomcat/webapps/jmx_prometheus_javaagent.jar
+
+# Настраиваем Tomcat для использования JMX Exporter
+ENTRYPOINT ["java", "-javaagent:/usr/local/tomcat/webapps/jmx_prometheus_javaagent.jar=12345:/usr/local/tomcat/webapps/jmx_exporter_config.yml", "-jar", "/usr/local/tomcat/bin/catalina.jar"]
+
+# Открываем порты
+EXPOSE 8080 12345
