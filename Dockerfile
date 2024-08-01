@@ -26,4 +26,4 @@ ADD https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.
 ENTRYPOINT ["java", "-javaagent:/usr/local/tomcat/webapps/jmx_prometheus_javaagent.jar=12345:/usr/local/tomcat/webapps/jmx_exporter_config.yml", "-jar", "/usr/local/tomcat/bin/catalina.jar"]
 
 # Открываем порты
-EXPOSE 8080 12345
+EXPOSE 8081 12345
