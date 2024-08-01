@@ -22,8 +22,5 @@ COPY jmx_exporter_config.yml /usr/local/tomcat/webapps/jmx_exporter_config.yml
 # Загружаем JMX Exporter
 ADD https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.16.1/jmx_prometheus_javaagent-0.16.1.jar /usr/local/tomcat/webapps/jmx_prometheus_javaagent.jar
 
-# Настраиваем Tomcat для использования JMX Exporter
-ENTRYPOINT ["java", "-javaagent:/usr/local/tomcat/webapps/jmx_prometheus_javaagent.jar=12345:/usr/local/tomcat/webapps/jmx_exporter_config.yml", "-jar", "/usr/local/tomcat/bin/catalina.jar"]
-
-# Открываем порты
-EXPOSE 8081 12345
+# Настраиваем Tomcat для использования JMX Exporter и запускаем Tomcat
+CMD ["catalina.sh", "run"]
