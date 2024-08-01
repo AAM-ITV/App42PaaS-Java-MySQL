@@ -15,7 +15,7 @@ RUN mvn clean package
 
 # Копируем WAR файл в директорию Tomcat
 RUN cp target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
-
+RUN mkdir ROOT
 # Копируем Config.properties в нужное место
 RUN cp WebContent/Config.properties /usr/local/tomcat/webapps/ROOT/Config.properties
 
