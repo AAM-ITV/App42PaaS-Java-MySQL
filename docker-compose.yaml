@@ -11,7 +11,9 @@ services:
       - db
 
   db:
-    image: mysql:5.7
+    build:
+      context: .
+      dockerfile: Dockerfile_db
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: app_db
