@@ -12,10 +12,7 @@ services:
       - db
 
   db:
-    build:
-      context: .
-      dockerfile: Dockerfile_db
-     image: aamitv/db-terraform
+    image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: app_db
