@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: aamitv/app-terraform
     ports:
       - "8080:8080"
     depends_on:
@@ -14,6 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_db
+     image: aamitv/db-terraform
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: app_db
