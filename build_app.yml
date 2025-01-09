@@ -1,5 +1,5 @@
 - name: Build app for terraform
-  hosts: localhost
+  hosts: build
   become: yes
 
   tasks:
@@ -7,11 +7,13 @@
     apt:
       name: docker.io
       state: present
-  
-  #- name: login to dockerhub
-   # docker_login:
-    #  username: your_username
-     # password: your_password
+
+  - name: clone repo
+    git:
+      repo: https://github.com/AAM-ITV/App42PaaS-Java-MySQL.git
+      dest: /tmp/App42PaaS-Java-MySQL
+      version: master
+      force: yes # re-record repo if it exists
 
   - name: build and push project
     docker_image:
@@ -19,6 +21,6 @@
         path: /tmp/App42PaaS-Java-MySQL
       name: aamitv/app1-terraform
       tag: latest
-     # push: yes
+      push: yes
       source: build
 
