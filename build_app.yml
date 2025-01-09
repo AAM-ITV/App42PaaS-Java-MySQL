@@ -7,13 +7,6 @@
     apt:
       name: docker.io
       state: present
-
-  - name: clone repo
-    git:
-      repo: https://github.com/AAM-ITV/App42PaaS-Java-MySQL.git
-      dest: /tmp/App42PaaS-Java-MySQL
-      version: master
-      force: yes # re-record repo if it exists
   
   #- name: login to dockerhub
    # docker_login:
