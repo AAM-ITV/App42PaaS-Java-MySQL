@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      image: aamitv/app1-terraform:latest
     ports:
       - "8080:8080"
     depends_on:
