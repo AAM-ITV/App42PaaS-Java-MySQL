@@ -1,42 +1,18 @@
-  name: Build app for terraform
+- name: Build app for terraform
   hosts: localhost
   become: yes
-  
+
   tasks:
   - name: install docker
     apt:
       name: docker.io
       state: present
 
-  - name: clone repo
-    git:
-      repo: https://github.com/AAM-ITV/App42PaaS-Java-MySQL.git
-      dest: /tmp
-      version: fixit
-      force: yes # re-record repo if exist
-
-  - name: login to dockerhub
-    docker_login:
-      username: your_username
-      password: your_password
-
-  - name: build project
-    command:
-      cmd: "docker-compose build"
-      chdir: "/tmp/App42PaaS-Java-MySQL"
-
-  - name: Push the Docker image app-terraform to Docker Hub
+  - name: build and push project
     docker_image:
-      name: "aamitv/app-terraform"
-      tag: "latest"
-      push: true
-      
-  - name: Push the Docker image db-terraform to Docker Hub
-    docker_image:
-      name: "aamitv/db-terraform"
-      tag: "latest"
-      push: true
-  
-  - name: log out of DockerHub
-    docker_login:
-      state: absent
+      build:
+        path: /tmp/App42PaaS-Java-MySQL
+      name: aamitv/app1-terraform
+      tag: latest
+      push: yes
+      source: build
