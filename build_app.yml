@@ -10,8 +10,8 @@
 
   - name: clone repo
     git:
-      repo: https://github.com/AAM-ITV/docker-1work.git
-      dest: /tmp/project
+      repo: https://github.com/AAM-ITV/App42PaaS-Java-MySQL.git
+      dest: /tmp
       version: fixit
       force: yes # re-record repo if exist
 
@@ -25,9 +25,15 @@
       cmd: "docker-compose build"
       chdir: "/tmp/App42PaaS-Java-MySQL"
 
-  - name: Push the Docker image to Docker Hub
+  - name: Push the Docker image app-terraform to Docker Hub
     docker_image:
-      name: "your-docker-repo/image-name"
+      name: "aamitv/app-terraform"
+      tag: "latest"
+      push: true
+      
+  - name: Push the Docker image db-terraform to Docker Hub
+    docker_image:
+      name: "aamitv/db-terraform"
       tag: "latest"
       push: true
   
