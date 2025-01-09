@@ -14,6 +14,11 @@
       dest: /tmp/App42PaaS-Java-MySQL
       version: master
       force: yes # re-record repo if it exists
+  
+  #- name: login to dockerhub
+   # docker_login:
+    #  username: your_username
+     # password: your_password
 
   - name: build and push project
     docker_image:
@@ -21,6 +26,6 @@
         path: /tmp/App42PaaS-Java-MySQL
       name: aamitv/app1-terraform
       tag: latest
-      push: yes
-      source: build
+     # push: yes
+     # source: build
 
