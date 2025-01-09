@@ -22,7 +22,7 @@
        force: yes # re-record repo if exist
 
    - name: Build Docker images
-     command:
-       cmd: "docker-compose up -d"
-       chdir: "/tmp/App42PaaS-Java-MySQL"
+     command: docker-compose up -d
+     args:
+       chdir: /tmp/App42PaaS-Java-MySQL
 
