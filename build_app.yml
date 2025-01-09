@@ -27,5 +27,5 @@
       name: aamitv/app1-terraform
       tag: latest
      # push: yes
-     # source: build
+      source: build
 
