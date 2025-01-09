@@ -25,6 +25,12 @@
       cmd: "docker-compose build"
       chdir: "/tmp/App42PaaS-Java-MySQL"
 
+  - name: Push the Docker image to Docker Hub
+    docker_image:
+      name: "your-docker-repo/image-name"
+      tag: "latest"
+      push: true
+  
   - name: log out of DockerHub
     docker_login:
       state: absent
