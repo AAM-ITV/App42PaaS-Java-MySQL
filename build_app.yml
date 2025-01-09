@@ -1,0 +1,30 @@
+  name: Build app for terraform
+  hosts: localhost
+  become: yes
+  
+  tasks:
+  - name: install docker
+    apt:
+      name: docker.io
+      state: present
+
+  - name: clone repo
+    git:
+      repo: https://github.com/AAM-ITV/docker-1work.git
+      dest: /tmp/project
+      version: fixit
+      force: yes # re-record repo if exist
+
+  - name: login to dockerhub
+    docker_login:
+      username: your_username
+      password: your_password
+
+  - name: build project
+    command:
+      cmd: "docker-compose build"
+      chdir: "/tmp/App42PaaS-Java-MySQL"
+
+  - name: log out of DockerHub
+    docker_login:
+      state: absent
